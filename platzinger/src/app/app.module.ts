@@ -9,7 +9,8 @@ import { ConversationComponent } from './conversation/conversation.component';
 import { ProfileComponent } from './profile/profile.component';
 
 // Importar el appRoutes.
-import { Routes, RouterModule } from '@angular/router'; 
+import { Routes, RouterModule } from '@angular/router';
+import { MenuComponent } from './menu/menu.component'; 
 
 // Declaracion de rutas
 const appRoutes: Routes = [
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     ConversationComponent,
-    ProfileComponent
+    ProfileComponent,
+    MenuComponent
   ],
   imports: [ // El imports extiende funcionalidades de la app.
     BrowserModule,
