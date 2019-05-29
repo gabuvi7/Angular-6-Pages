@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsoleReporter } from 'jasmine';
+import { User } from '../interfaces/user'; // Importo la interface User para poder declarar la variable tipo User.
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,7 @@ import { ConsoleReporter } from 'jasmine';
 })
 export class HomeComponent implements OnInit {
 
+  /*
   // Empezamos con typescript:
 
   constructor() {
@@ -38,6 +40,26 @@ export class HomeComponent implements OnInit {
     let l: any [] = [1, 'ae', true]; //arreglo de cualquier cosa, num, string, etc.
    }
 
+   */
+
+   constructor() {
+    let myUser: User = {
+      nick: "Gabriel",
+      subnick: 'Hola!',
+      age:23,
+      email:  'asdsa@dwsd.com',
+      friend: true,
+      uid: 1
+    };
+
+    console.log(myUser);
+
+    let users: User [] = [
+      myUser
+      //2, No puedo pasarle un numero dado que debe ser del tipo User.
+    ];
+
+   }
   ngOnInit() {
   }
 
