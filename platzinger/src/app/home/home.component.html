@@ -1,3 +1,8 @@
-<p>
-  home works!
-</p>
+
+<!-- Para mostrar el array voy a utilizar a NgFor. Es una directiva estructural y comienza con un *.
+   Se pueden declarar variables dentro de un NgFor -->
+
+  <p *ngFor="let user of friends; let i = index"> <!-- recorre el arreglo de friend. Con la variable i, tomo el indice y lo muestro por cada usuario -->
+    {{i}}. {{user.nick}} - {{user.email}}  <!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
+
+  </p>

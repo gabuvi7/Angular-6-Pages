@@ -9,6 +9,8 @@ import { User } from '../interfaces/user'; // Importo la interface User para pod
 })
 export class HomeComponent implements OnInit {
 
+  friends: User []; // Declaramos el array de tipo user fuera del constructor para que sea visible para todos.
+
   /*
   // Empezamos con typescript:
 
@@ -58,6 +60,47 @@ export class HomeComponent implements OnInit {
       myUser
       //2, No puedo pasarle un numero dado que debe ser del tipo User.
     ];
+
+    // Creacion de usuarios.
+    let usuario1: User = {
+      nick: 'Eduardo',
+      age: 24,
+      email: 'ed@aoe.aoe',
+      friend: true,
+      uid: 1
+    };
+    let usuario2: User = {
+      nick: 'Freddy',
+      age: 28,
+      email: 'fred@aoe.aoe',
+      friend: true,
+      uid: 1
+    };
+    let usuario3: User = {
+      nick: 'Yuliana',
+      age: 18,
+      email: 'yuli@aoe.aoe',
+      friend: true,
+      uid: 1
+    };
+    let usuario4: User = {
+      nick: 'Ricardo',
+      age: 17,
+      email: 'rick@aoe.aoe',
+      friend: false,
+      uid: 1
+    };
+    let usuario5: User = {
+      nick: 'Marcos',
+      age: 30,
+      email:'marcos@aoe.aoe',
+      friend: false,
+      uid: 1
+    };
+
+    this.friends = [usuario1, usuario2, usuario3, usuario4, usuario5]; // Con this me refiero a la clase completa y referencio la variable friends.
+
+    // Este arreglo lo puedo recorrer desde el home.component.html
 
    }
   ngOnInit() {
