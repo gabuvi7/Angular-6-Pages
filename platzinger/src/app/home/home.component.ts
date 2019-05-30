@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ConsoleReporter } from 'jasmine';
 import { User } from '../interfaces/user'; // Importo la interface User para poder declarar la variable tipo User.
 
 @Component({

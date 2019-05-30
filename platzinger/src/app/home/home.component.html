@@ -2,7 +2,19 @@
 <!-- Para mostrar el array voy a utilizar a NgFor. Es una directiva estructural y comienza con un *.
    Se pueden declarar variables dentro de un NgFor -->
 
-  <p *ngFor="let user of friends; let i = index"> <!-- recorre el arreglo de friend. Con la variable i, tomo el indice y lo muestro por cada usuario -->
-    {{i}}. {{user.nick}} - {{user.email}}  <!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
+  <!-- Para que funcione el ngIf, necesitamos un ng-container (usarlo en minuscula, es keysensitive), su funcion es no existir a vista del usuario.
+     Ayuda a tener 2 elementos dif y poder aplicar el ngFor y el ngIf. -->
+  <br/><br/>
+  <b>Amigos</b>
+  <ng-container *ngFor="let user of friends; let i = index;">
+    <p *ngIf="user.friend" > <!-- recorre el arreglo de friend. Con la variable i, tomo el indice y lo muestro por cada usuario -->
+      {{i}}. {{user.nick}} - {{user.email}}  <span style="color: green; font-size: xx-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">.</span><!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
+    </p>
+  </ng-container>
 
-  </p>
+  <b>No agregados</b>
+  <ng-container *ngFor="let user of friends; let i = index;">
+    <p *ngIf="!user.friend" > <!-- recorre el arreglo de friend y muestro los que no son amigos. Con la variable i, tomo el indice y lo muestro por cada usuario -->
+      {{i}}. {{user.nick}} - {{user.email}}  <span style="color: red; font-size: xx-large;  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">.</span> <!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
+    </p>
+  </ng-container>
