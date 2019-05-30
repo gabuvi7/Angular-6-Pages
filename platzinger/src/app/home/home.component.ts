@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/user'; // Importo la interface User para poder declarar la variable tipo User.
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit {
    }
 
    */
-
+/*
    constructor() {
     let myUser: User = {
       nick: "Gabriel",
@@ -61,7 +62,7 @@ export class HomeComponent implements OnInit {
     ];
 
     // Creacion de usuarios.
-    let usuario1: User = {
+    /*let usuario1: User = {
       nick: 'Eduardo',
       age: 24,
       email: 'ed@aoe.aoe',
@@ -98,9 +99,13 @@ export class HomeComponent implements OnInit {
     };
 
     this.friends = [usuario1, usuario2, usuario3, usuario4, usuario5]; // Con this me refiero a la clase completa y referencio la variable friends.
-
+*/
     // Este arreglo lo puedo recorrer desde el home.component.html
-
+    
+    
+    // Inyectamos un servicio en el constructor.
+    constructor(private userServices: UserService){
+      this.friends = userServices.getFriends(); // con el metodo obtengo los usuarios.
    }
   ngOnInit() {
   }
