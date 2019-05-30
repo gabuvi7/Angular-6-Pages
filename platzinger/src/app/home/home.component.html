@@ -5,16 +5,25 @@
   <!-- Para que funcione el ngIf, necesitamos un ng-container (usarlo en minuscula, es keysensitive), su funcion es no existir a vista del usuario.
      Ayuda a tener 2 elementos dif y poder aplicar el ngFor y el ngIf. -->
   <br/><br/>
+
+  <!--Introduccion a la navegacion con parametros. Cambio los parrafos por la et a y agrego un div, donde este ultimo va 
+  a contener el ngIf y la etiqueta a va a contener el routerLink a conversation. Para enviar un parametro
+en el routerLink le enviaremos el /conversation/{{user.uid}}. Pero asi solo no funciona, asi que vamos a
+app.Module.ts y agregamos en conversation una barra y el nombre del parametro-->
   <b>Amigos</b>
   <ng-container *ngFor="let user of friends; let i = index;">
-    <p *ngIf="user.friend" > <!-- recorre el arreglo de friend. Con la variable i, tomo el indice y lo muestro por cada usuario -->
-      {{i}}. {{user.nick}} - {{user.email}}  <span style="color: green; font-size: xx-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">.</span><!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
-    </p>
+    <div  *ngIf="user.friend" >
+      <a routerLink="/conversation/{{user.uid}}" style="text-decoration: none"> <!-- recorre el arreglo de friend. Con la variable i, tomo el indice y lo muestro por cada usuario -->
+        {{i}}. {{user.nick}} - {{user.email}}  <span style="color: green; font-size: xx-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">.</span><!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
+      </a>
+    </div>
   </ng-container>
 
   <b>No agregados</b>
   <ng-container *ngFor="let user of friends; let i = index;">
-    <p *ngIf="!user.friend" > <!-- recorre el arreglo de friend y muestro los que no son amigos. Con la variable i, tomo el indice y lo muestro por cada usuario -->
-      {{i}}. {{user.nick}} - {{user.email}}  <span style="color: red; font-size: xx-large;  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">.</span> <!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
-    </p>
+    <div>
+      <a *ngIf="!user.friend" > <!-- recorre el arreglo de friend y muestro los que no son amigos. Con la variable i, tomo el indice y lo muestro por cada usuario -->
+        {{i}}. {{user.nick}} - {{user.email}}  <span style="color: red; font-size: xx-large;  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">.</span> <!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
+      </a>
+    </div>
   </ng-container>

@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   {path: '', component: HomeComponent}, // Lo dejo vacio porque si la ruta no matchea con el path, lo lleva al HomeComponent
   {path: 'home', component: HomeComponent}, // Ruta para home
   {path: 'login', component: LoginComponent},
-  {path: 'conversation', component: ConversationComponent},
+  {path: 'conversation/:uid', component: ConversationComponent}, // modifico para poder enviar un parametro.
   {path: 'profile', component: ProfileComponent}
 ];
 
