@@ -106,6 +106,7 @@ export class HomeComponent implements OnInit {
     // Inyectamos un servicio en el constructor.
     constructor(private userServices: UserService){
       this.friends = userServices.getFriends(); // con el metodo obtengo los usuarios.
+      
    }
   ngOnInit() {
   }

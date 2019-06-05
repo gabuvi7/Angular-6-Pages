@@ -22,7 +22,9 @@ export class ConversationComponent implements OnInit {
     this.friends = this.userService.getFriends();
     this.friend = this.friends.find((record) => {
       return record.uid == this.friendId;
+      
     });
+    console.log(this.friend);
   } 
 
   ngOnInit() {
