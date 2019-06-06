@@ -12,6 +12,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component'; 
 
+import { SearchPipe } from './pipes/search';
+
+import { FormsModule } from '@angular/forms'
+
 // Declaracion de rutas
 const appRoutes: Routes = [
   {path: '', component: HomeComponent}, // Lo dejo vacio porque si la ruta no matchea con el path, lo lleva al HomeComponent
@@ -28,12 +32,14 @@ const appRoutes: Routes = [
     HomeComponent,
     ConversationComponent,
     ProfileComponent,
-    MenuComponent
+    MenuComponent,
+    SearchPipe //incluimos el pipe creado
   ],
   imports: [ // El imports extiende funcionalidades de la app.
     BrowserModule,
     // Importar el RouterModule. No viene por defecto.
-    RouterModule.forRoot(appRoutes) // Le agreda caracteristicas de navegacion. Recibe las rutas y escucha si existe alguna modificacion en las rutas.
+    RouterModule.forRoot(appRoutes), // Le agreda caracteristicas de navegacion. Recibe las rutas y escucha si existe alguna modificacion en las rutas.
+    FormsModule // importar el formsmodule porque sino, no funciona.
   ],
   providers: [],
   bootstrap: [AppComponent]

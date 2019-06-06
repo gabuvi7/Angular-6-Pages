@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 export class HomeComponent implements OnInit {
 
   friends: User []; // Declaramos el array de tipo user fuera del constructor para que sea visible para todos.
-
+  query: string = ''; //Declaro la variable query para usar en el ngModel del home.component.html 
   /*
   // Empezamos con typescript:
 
