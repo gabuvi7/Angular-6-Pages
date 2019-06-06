@@ -1,3 +1,13 @@
 <p>
-  conversation works!
+{{friend | json}} <!-- Utilizacion de Pipes |, en este caso usamos Json.-->
+</p>
+
+<p>
+  {{price | number: '1.2-2'}} <!-- Uso el pipe number para formatear el numero, le paso por parametro 
+  como quiero formatear el numero. 1 es entero, despues del punto quiero que me de minimo 2 y max 2 decimales.-->
+</p>
+
+<p>
+  {{today | date}} <!-- Uso el pipe number para formatear la fecha, le paso por parametro 
+  como quiero formatearla, puedo usar medium, fulldate u otros. Buscarlos en Angular.io-->
 </p>
