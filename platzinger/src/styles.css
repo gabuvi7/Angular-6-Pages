@@ -53,6 +53,14 @@
     margin-bottom: 3rem;
 }
 
+.marBot5{
+    margin-bottom: 5px;
+}
+
 .grlContent{
     margin-top: 56px;
+}
+
+.disblo{
+    display: block !important;
 }

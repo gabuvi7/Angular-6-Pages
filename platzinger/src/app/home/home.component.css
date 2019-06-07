@@ -16,3 +16,12 @@
 #homeAvatarPicture{
     max-width: 100px;
 }
+
+.whiteContainerPadded{
+    padding: 15px;
+    background-color: #ffefff;
+}
+
+.icon{
+    width: 30px;
+}
