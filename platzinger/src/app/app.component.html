@@ -15,8 +15,8 @@ recarga los recursos cada vez que doy un click en un link. Para eso utilizo rout
 
 <!-- Para que el menu aparezca utilizamos el selector app-menu creado en el componente-->
 
-<app-menu></app-menu>
-<div class="grlContent">
+<app-menu *ngIf="router.url != '/login'"></app-menu>
+<div [ngClass]="{'grlContent': router.url != '/login'}">
   <router-outlet>
     <!-- Aca va a agregar los elementos que pusimos en el router-->
   </router-outlet> 
