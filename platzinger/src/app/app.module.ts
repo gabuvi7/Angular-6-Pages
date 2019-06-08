@@ -45,3 +45,7 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
+/* Vamos a utilizar Firebase para hacer la parte del Backend.*/
