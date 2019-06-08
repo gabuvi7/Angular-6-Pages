@@ -1,13 +1,76 @@
-<p>
-{{friend | json}} <!-- Utilizacion de Pipes |, en este caso usamos Json.-->
+<div id="conversationContainer">
+  <div class="row mr-0 ml-0">
+    <div class="col-md-3">
+      <div class="row ml-3 mt-3">
+        <img src="/assets/img/logo_live_online.png" class="img-fluid avatarFrameOnlineConver">
+      </div>     
+    </div>
+
+    <div class="col-md-9">
+      <div class="row mt-3">
+        <span class="textNick" > {{friend.nick | json}} </span> <span class="textStatus">(online) </span>
+      </div>
+      <hr/>
+      <div class="containerChat container">
+        <textarea class="form-control containerChat ml-0" readonly>
+
+        </textarea>
+      </div>
+      
+    </div>
+    <div class="row container-fluid">
+      <div class="col-md-3">
+          <div class="row ml-3 mt-3">
+            <img src="/assets/img/logo_live_online.png" class="img-fluid avatarFrameOnlineConver">
+          </div>
+      </div>
+      <div class="col-md-9 container">
+        <div class="bg-white border container pl-0 pr-0">
+          <textarea type="text" class="form-control containerChatUser"></textarea>
+          <div class="row pl-3">
+            <div>
+              <select id="selectEmoji">
+                <option value="0"><i src="/assets/img/regular_smile.gif"></i> </option>
+              </select>
+            </div>
+            <div>
+              <select id="selectEmoji">
+                <option value="0"><i src="/assets/img/regular_smile.gif"></i> </option>
+              </select>
+            </div> 
+            <div class="pt-0">
+              <a type="button" id="aZumbido" class="btn pl-0 pr-0">
+                <img id="btnZumbido" class="d-inline-block" src="/assets/img/zumbido.png">
+              </a>
+            </div>
+            <label class="customFileUploadChat">
+              <input type="file">
+              <img class="img-fluid" id="btnZumbido" src="/assets/img/icons/camera.gif">
+              Seleccionar imágen
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Explicacion de pipes, primeras clases.
+
+  <p>
+{{friend | json}} <!-- Utilizacion de Pipes |, en este caso usamos Json.
 </p>
 
 <p>
   {{price | number: '1.2-2'}} <!-- Uso el pipe number para formatear el numero, le paso por parametro 
-  como quiero formatear el numero. 1 es entero, despues del punto quiero que me de minimo 2 y max 2 decimales.-->
+  como quiero formatear el numero. 1 es entero, despues del punto quiero que me de minimo 2 y max 2 decimales.
 </p>
 
 <p>
   {{today | date}} <!-- Uso el pipe number para formatear la fecha, le paso por parametro 
-  como quiero formatearla, puedo usar medium, fulldate u otros. Buscarlos en Angular.io-->
+  como quiero formatearla, puedo usar medium, fulldate u otros. Buscarlos en Angular.io
 </p>
+
+-->
