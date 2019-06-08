@@ -49,3 +49,5 @@ export class AppModule { }
 
 
 /* Vamos a utilizar Firebase para hacer la parte del Backend.*/
+
+/* 37 - Vamos a utilizar firebase con una conexion a traves de Sockets. */
