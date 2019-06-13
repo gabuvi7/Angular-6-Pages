@@ -18,7 +18,7 @@
         <div class="borderedContainer">
           <input [(ngModel)]="email" class="form-control marBot15" type="email" placeholder="Ingrese el email"/>
           <input [(ngModel)]="password" class="form-control marBot15" type="password" placeholder="Ingrese la contraseña"/>
-          <input *ngIf="operation == 'register'" class="form-control marBot15" type="text" placeholder="Ingrese nick"/>
+          <input [(ngModel)]="nick" *ngIf="operation == 'register'" class="form-control marBot15" type="text" placeholder="Ingrese nick"/>
         </div>
         <div class="center marTop15 marBot15">
           <a (click)="login()" *ngIf="operation == 'login'" class="btn btn-primary-login">Iniciar Sesión</a>
