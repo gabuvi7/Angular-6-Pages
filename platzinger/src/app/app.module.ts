@@ -22,15 +22,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AuthenticationGuard } from './services/authentication.guard';
 
 
 // Declaracion de rutas
 const appRoutes: Routes = [
   {path: '', component: HomeComponent}, // Lo dejo vacio porque si la ruta no matchea con el path, lo lleva al HomeComponent
-  {path: 'home', component: HomeComponent}, // Ruta para home
+  {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]}, // Ruta para home
   {path: 'login', component: LoginComponent},
   {path: 'conversation/:uid', component: ConversationComponent}, // modifico para poder enviar un parametro.
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard]}
 ];
 
 /*Type '{ ngModule: typeof AngularFireModule; providers: { provide: InjectionToken<string | FirebaseAppConfig>; useValue: string | FirebaseAppConfig; }[]; }' is not assignable to type 'any[] | Type<any> | ModuleWithProviders<{}>'.
