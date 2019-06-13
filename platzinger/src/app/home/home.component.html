@@ -1,3 +1,88 @@
-<p>
-  home works!
-</p>
+<div id="homeContainer">
+
+  <div class="whiteBorderGlassBox">
+    <div class="homeHeadContainer">
+      <div class="row">
+        <div class="col-md-auto">
+          <div class="avatarFrameOnline">
+            <img src="assets/img/generic_avatar.png" id="homeAvatarPicture">
+          </div>
+        </div>
+        <div class="col">
+            <b>Gabriel</b>
+            <div>
+              <span>Online</span>
+              <br />
+              <span>< Escribe un mensaje personal ></span> <br/>
+              <a (click)="logOut()">Logout</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="whiteContainerPadded marTop15">
+    <div class="row">
+      <div class="col">
+        <input type="text" placeholder="Buscar contacto" [(ngModel)]="query" class="form-control"/>         
+      </div>
+      <div class="col-md-auto">
+        <img src="/assets/img/logo_live_add.png" class="icon">
+      </div>
+    </div>
+    <hr/>
+    <b *ngIf="friends">Amigos ({{friends.length}} / {{friends.length}}) </b>
+    <div *ngFor="let user of friends | search: query; let i = index;" class="disblo marBot5 ">
+          <span routerLink="/conversation/{{user.uid}}" style="text-decoration: none">
+            <img src="/assets/img/logo_live_online.png" class="icon">
+            <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
+             <small> {{user.email}}</small>
+          </span>
+        
+    </div>
+
+  </div>
+
+
+
+
+</div>
+
+
+
+<!--  Lo de abajo es de las primeras clases. -->
+
+<!-- Para mostrar el array voy a utilizar a NgFor. Es una directiva estructural y comienza con un *.
+   Se pueden declarar variables dentro de un NgFor -->
+
+  <!-- Para que funcione el ngIf, necesitamos un ng-container (usarlo en minuscula, es keysensitive), su funcion es no existir a vista del usuario.
+     Ayuda a tener 2 elementos dif y poder aplicar el ngFor y el ngIf. -->
+ <!-- 
+<input type="text" placeholder="Buscar contacto" [(ngModel)]="query" /> <!-- lo que hace el ng model es tomar una variable que nosotros le especifiquemos, por ej
+Query, y verificar si esa variable cambia. Si lo hace, lo cambia en el ts o en el html. 
+En principio va a dar error porque no encuentra el modulo ngModdel. hay que importarlo en app.module.ts
+El modulo que permite importarlo se llama FormsModule
+     <br/><br/>
+
+  Introduccion a la navegacion con parametros. Cambio los parrafos por la et a y agrego un div, donde este ultimo va 
+  a contener el ngIf y la etiqueta a va a contener el routerLink a conversation. Para enviar un parametro
+en el routerLink le enviaremos el /conversation/{{user.uid}}. Pero asi solo no funciona, asi que vamos a
+app.Module.ts y agregamos en conversation una barra y el nombre del parametro
+
+<b>Amigos</b>
+  <ng-container *ngFor="let user of friends | search: query; let i = index;">
+    <div> <!-- *ngIf="user.friend" > Quito el ngIf para que me muestre todos los contactos.
+      <a routerLink="/conversation/{{user.uid}}" style="text-decoration: none">  recorre el arreglo de friend. Con la variable i, tomo el indice y lo muestro por cada usuario 
+        {{i}}. {{user.nick}} - {{user.email}}  Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.
+      </a>
+    </div>
+  </ng-container>
+<!-- Quito el NO AGREGADOS, porque voy a implementar la barra de busqueda con pipes.-->
+ <!-- <b>No agregados</b>
+  <ng-container *ngFor="let user of friends; let i = index;">
+    <div>
+      <a *ngIf="!user.friend" > recorre el arreglo de friend y muestro los que no son amigos. Con la variable i, tomo el indice y lo muestro por cada usuario 
+      <!--  {{i}}. {{user.nick}} - {{user.email}}  <span style="color: red; font-size: xx-large;  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">.</span> <!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
+      <!--</a>
+    </div>
+  </ng-container> -->
