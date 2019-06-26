@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { FormComponent } from './form/form.component';
 import { Route, RouterModule } from '@angular/router';
 import { HttpClientModule  } from '@angular/common/http';
+import { FormsModule  } from '@angular/forms';
 
 const routes: Route[] = [
   {path: '', component: HomeComponent},
@@ -22,7 +23,8 @@ const routes: Route[] = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    HttpClientModule 
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

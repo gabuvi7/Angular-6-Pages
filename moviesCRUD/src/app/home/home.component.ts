@@ -9,12 +9,17 @@ import { Movie } from '../interfaces/movie';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  API_ENDPOINT = 'http://127.0.0.1:8000/api'; //el point a donde quiero consultar. Hago una pausa y creo la API. ... API Creada, esa es la ip.
+  
+  // Ya no lo uso aca. API_ENDPOINT = 'http://127.0.0.1:8000/api'; //el point a donde quiero consultar. Hago una pausa y creo la API. ... API Creada, esa es la ip.
+  
   movies: Movie[];
   constructor(private moviesService: MoviesService, private httpClient: HttpClient) {
-    httpClient.get(this.API_ENDPOINT + '/movies').subscribe((data: Movie[]) => {
+    this.moviesService.get().subscribe( (data: Movie[]) => {
       this.movies = data;
-    } );
+    }, (error) => {
+      console.log(error);
+      alert('Ocurrio un error.');
+    });
    }
 
   ngOnInit() {
