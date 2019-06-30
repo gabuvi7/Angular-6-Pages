@@ -17,7 +17,10 @@
       <td>{{movie.genre}}</td>
       <td>{{movie.year}}</td>
       <td>{{movie.duration}}</td>
-      <td><a routerLink="/form/{{movie.id}}" class="btn btn-primary"> Ver/Editar </a></td>
+      <td>
+        <a routerLink="/form/{{movie.id}}" class="btn btn-primary"> Ver/Editar </a>
+        <a class="btn btn-danger" (click)="delete(movie.id)"> Eliminar </a>
+      </td>
     </tr>
   </tbody>
 </table>

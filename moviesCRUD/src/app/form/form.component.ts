@@ -57,7 +57,7 @@ movies: Movie[]; //no se recomienda hacer esto.
     }else{ //Si no estamos editando, estamos creando:
       this.moviesService.save(this.movie).subscribe((data) => {
         alert('Pelicula guardada');
-        console.log(data);
+        console.log(data);        
       }, (error) => {
         console.log(error);
         console.log('Ocurrio un error.');
