@@ -18,3 +18,18 @@ export class SearchPipe implements PipeTransform    {
         });
     }
 }
+
+
+
+
+/*
+import { Pipe, PipeTransform } from '@angular/core';
+@Pipe({
+  name:"search"
+})
+export class SearchPipe implements PipeTransform{
+  transform(value:string, limite:string) : string{
+    let limit = parseInt(limite);
+    return value.length > limit ? value.substring(0,limit)+"..." :   value;
+  }
+}*/
