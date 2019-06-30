@@ -13,9 +13,14 @@ export class MoviesService {
    get(){
     return this.httpClient.get(this.API_ENDPOINT + '/movies');
    }
-   
+
    save(movie: Movie){
      const headers = new HttpHeaders({'Content-Type':'application/json'}); //especial para los metodos de POST, cualquiera que no sea GET.
      return this.httpClient.post(this.API_ENDPOINT + '/movies', movie, {headers: headers});
+   }
+
+   put(movie){ //Con este metodo puedo editar la pelicula.
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    return this.httpClient.put(this.API_ENDPOINT + '/movies/' + movie.id, movie, {headers: headers}); 
    }
 }

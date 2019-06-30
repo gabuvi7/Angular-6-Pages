@@ -11,7 +11,8 @@ import { FormsModule  } from '@angular/forms';
 const routes: Route[] = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'form', component: FormComponent}
+  {path: 'form', component: FormComponent},
+  {path: 'form/:id', component: FormComponent}
 ];
 
 @NgModule({

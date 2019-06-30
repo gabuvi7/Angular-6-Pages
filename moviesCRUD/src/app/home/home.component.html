@@ -2,18 +2,22 @@
 <table class="table table-hover table-dark">
   <thead>
     <tr>
+        <th scope="col">ID</th>
       <th scope="col">Nombre</th>
       <th scope="col">Género</th>
       <th scope="col">Año</th>
       <th scope="col">Duración</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let movie of movies">
-      <th scope="row">{{movie.name}}</th>
+      <td>{{movie.id}}</td>
+      <td>{{movie.name}}</td>
       <td>{{movie.genre}}</td>
       <td>{{movie.year}}</td>
       <td>{{movie.duration}}</td>
+      <td><a routerLink="/form/{{movie.id}}" class="btn btn-primary"> Ver/Editar </a></td>
     </tr>
   </tbody>
 </table>
