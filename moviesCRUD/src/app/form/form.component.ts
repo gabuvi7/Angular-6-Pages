@@ -63,6 +63,7 @@ movies: Movie[]; //no se recomienda hacer esto.
         console.log('Ocurrio un error.');
       });
     }
+    return this.moviesService.get();
     
   }
 }

@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
   // Ya no lo uso aca. API_ENDPOINT = 'http://127.0.0.1:8000/api'; //el point a donde quiero consultar. Hago una pausa y creo la API. ... API Creada, esa es la ip.
   
   movies: Movie[];
+  query: string = '';
+
   constructor(private moviesService: MoviesService) {
     this.getMovies();
    }

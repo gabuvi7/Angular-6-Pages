@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+
+body{
+    background-color: #6c757d;
+} 
+
+.card{
+    background-color: #343a40!important;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+@media (max-width: 768px){
+
+    .scroll-table{
+        max-width: 100%;
+        overflow-x: hidden;
+        margin-left: 70px;
+        overflow-y: visible;
+        background-color: #343a40!important;
+    }
+    
+    tbody > tr:hover{
+        background-color: #6c757d !important;
+    }
+ 
+    .scroll-table .table.left-col-fix th.fixed-col {
+        position: absolute;
+        left: 1.25rem;
+        top: auto;
+        /*only relevant for first row*/
+        background-color: #343a40!important;
+        border: none !important;
+    }
+
+    .scroll-table .table.left-col-fix td {
+       background-color: #343a40!important;
+       border: none !important;
+    }
+
+}
+
+@media (min-width: 576px){
+    .container#idContainerPrincipal #containerCard{
+        max-width: 100% !important;
+    }
+}
+
+
+
+
+
