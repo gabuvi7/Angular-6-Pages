@@ -7,9 +7,7 @@ import { FormComponent } from './form/form.component';
 import { Route, RouterModule } from '@angular/router';
 import { HttpClientModule  } from '@angular/common/http';
 import { FormsModule  } from '@angular/forms';
-
-import { SearchPipe } from './pipes/search.pipe';
-
+import { SearchPipe } from './search.pipe';
 
 const routes: Route[] = [
   {path: '', component: HomeComponent},
