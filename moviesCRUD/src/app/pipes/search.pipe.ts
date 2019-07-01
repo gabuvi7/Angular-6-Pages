@@ -20,6 +20,7 @@ export class SearchPipe implements PipeTransform    {
 }
 
 
+// El pipe de abajo sirve para limitar caracteres.
 
 
 /*
