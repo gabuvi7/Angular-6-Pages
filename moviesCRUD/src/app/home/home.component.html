@@ -4,28 +4,37 @@
   </div>
 </div>
 
-<table class="table table-hover table-dark">
-  <thead>
-    <tr>
-        <th scope="col">ID</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Género</th>
-      <th scope="col">Año</th>
-      <th scope="col">Duración</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let movie of movies | search: query; let i = index;">
-      <td>{{movie.id}}</td>
-      <td>{{movie.name}}</td>
-      <td>{{movie.genre}}</td>
-      <td>{{movie.year}}</td>
-      <td>{{movie.duration}}</td>
-      <td>
-        <a routerLink="/form/{{movie.id}}" class="btn btn-primary"> Ver/Editar </a>
-        <a class="btn btn-danger" (click)="delete(movie.id)"> Eliminar </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+
+<div class="container card" id="containerCard">
+  <div class="scroll-table">
+    <table class="table table-responsive-md table-hover table-dark left-col-fix">
+      <thead>
+        <tr>
+          <th id="idCol" class="fixed-col" scope="col">ID</th>
+          <th id="firstCol" scope="col">Nombre</th>
+          <th scope="col">Género</th>
+          <th scope="col">Año</th>
+          <th scope="col">Duración</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of movies | search: query; let i = index;">
+          <th id="idCol" class="fixed-col">{{movie.id}}</th>
+          <td id="firstCol">{{movie.name}}</td>
+          <td>{{movie.genre}}</td>
+          <td>{{movie.year}}</td>
+          <td>{{movie.duration}}</td>
+          <td>
+            <a routerLink="/form/{{movie.id}}" class="btn btn-primary"> Ver/Editar </a>
+          </td>
+          <td>
+            <a class="btn btn-danger" (click)="delete(movie.id)"> Eliminar </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+    
