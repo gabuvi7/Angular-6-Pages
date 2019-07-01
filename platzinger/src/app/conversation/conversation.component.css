@@ -1,0 +1,91 @@
+#conversationContainer{
+    background-image: url(/assets/img/msnbg.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.containerChat{
+    height: 300px;
+    background: none;
+    border: none;
+    resize: none;
+    padding: 0px;
+}
+
+.containerChatUser{
+    min-height: 150px;
+}
+
+.avatarFrameOnlineConver{
+        background: rgba(210,255,82,1);
+        background: -moz-linear-gradient(top, rgba(210,255,82,1) 0%, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 82%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(210,255,82,1)), color-stop(0%, rgba(210,255,82,1)), color-stop(82%, rgba(145,232,66,1)));
+        background: -webkit-linear-gradient(top, rgba(210,255,82,1) 0%, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 82%);
+        background: -o-linear-gradient(top, rgba(210,255,82,1) 0%, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 82%);
+        background: -ms-linear-gradient(top, rgba(210,255,82,1) 0%, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 82%);
+        background: linear-gradient(to bottom, rgba(210,255,82,1) 0%, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 82%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=0 );
+        text-align: center;
+        padding: 2%;
+        border-radius: 10px;
+        border-right: 3px solid rgba(0, 0, 0, .45);
+        border-bottom: 3px solid  rgba(0, 0, 0, .45);
+        display: inline-block;
+        max-height: 120px;
+}
+
+@media (max-width: 768px)
+{
+    .avatarFrameOnlineConver{
+        display: none;
+    }
+}
+
+.textNick{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.textStatus{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 0.9rem;
+    align-self: flex-end;
+}
+
+#selectEmoji{
+    height: 36px;
+    border: 0px;
+    width: 20px;
+}
+
+#aZumbido{
+    height: 36px;
+    border: 0px;
+    background-color: white;
+}
+
+#btnZumbido {
+    cursor: pointer;
+    max-width: 35px;
+    max-height: 30px;
+    border: 0px;
+}
+
+.customFileUploadChat{
+    background: #f2f6f8;
+    background: -moz-linear-gradient(top, #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%);
+    background: -webkit-linear-gradient(top, #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%);
+    background: linear-gradient(top, #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColostr='#f2f6f8', endColorstr='#e0eff9', GradientType=0 );
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border: 1px solid #8dd2f3;
+    height: 36px;
+    padding: 0;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin: 0px;
+}
