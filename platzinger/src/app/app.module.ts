@@ -24,6 +24,11 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AuthenticationGuard } from './services/authentication.guard';
 
+//Importo HttpClient para poder consumir la api de weather. 
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { MomentPipe } from './pipes/moment.pipe';
+
+
 
 // Declaracion de rutas
 const appRoutes: Routes = [
@@ -47,7 +52,9 @@ const appRoutes: Routes = [
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    HttpClientModule, 
+    HttpClientJsonpModule
   ],
   declarations: [
     AppComponent,
@@ -56,7 +63,8 @@ const appRoutes: Routes = [
     ConversationComponent,
     ProfileComponent,
     MenuComponent,
-    SearchPipe //incluimos el pipe creado
+    SearchPipe,
+    MomentPipe //incluimos el pipe creado
   ],
   providers: [
     { provide: FirebaseOptionsToken, useValue: environment.firebaseConfig }
