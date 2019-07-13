@@ -32,7 +32,7 @@ import { MomentPipe } from './pipes/moment.pipe';
 
 // Declaracion de rutas
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent}, // Lo dejo vacio porque si la ruta no matchea con el path, lo lleva al HomeComponent
+  {path: '', component: HomeComponent, canActivate: [AuthenticationGuard]}, // Lo dejo vacio porque si la ruta no matchea con el path, lo lleva al HomeComponent
   {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]}, // Ruta para home
   {path: 'login', component: LoginComponent},
   {path: 'conversation/:uid', component: ConversationComponent}, // modifico para poder enviar un parametro.
