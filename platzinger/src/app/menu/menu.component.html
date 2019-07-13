@@ -6,7 +6,9 @@
     <div class="item" routerLink="/profile">
         Profile
     </div>
-    
+    <div *ngIf="router.url === '/home' || router.url === '/'" class="item float-right">
+        <span> {{ city }}, {{ state }} </span>
+    </div>
     
 </div>
 

@@ -1,5 +1,26 @@
 <div id="homeContainer">
-
+    <div class="container-fluid float-right" style="max-width: 150px; max-height: 130px; overflow: hidden; padding: 0px 0px 0px 0px ; margin: 0;">
+      <div *ngIf="weather.length == 0" class="row">
+        <div class="col-12">
+            <p>Searching...</p>
+        </div>
+      </div>
+      <div class="row" *ngIf="weather.length > 0">
+        <div class="col" *ngFor="let forecast of weather">
+            <div class="row">
+              <div class="col">
+                  <img class="img-fluid" [src]="forecast.iconLink" />
+              </div>
+              <div class="col">
+                  <p>{{ forecast.highTemperature }}C°</p>
+              </div>
+              <div class="col">
+                  <p>{{ forecast.utcTime | moment}}</p>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
   <div class="whiteBorderGlassBox">
     <div class="homeHeadContainer">
       <div class="row">
