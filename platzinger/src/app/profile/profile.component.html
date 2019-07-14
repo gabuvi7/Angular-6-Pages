@@ -2,9 +2,9 @@
   <div class="container paddTop45">
     <div class="row">
       <div class="col-md-3">
-        <div class="avatarFrameOnline">
+        <div class="avatarFrameOnline" *ngIf="user">
           <!--<img src="/assets/img/generic_avatar.png" class="avatarImage img-fluid"-->
-          <img [src]="croppedImage" class="avatarImage img-fluid">
+          <img [src]="croppedImage || user.avatar || 'assets/img/generic_avatar.png'" class="avatarImage img-fluid">
         </div>
         <hr/>
         <div>
@@ -31,6 +31,7 @@
 
           
           <img [src]="croppedImage" />    
+       <div class="container" *ngIf="!croppedImage">
         <div>
           <label fixed>Nick</label>
           <input [(ngModel)]="user.nick" type="text" class="form-control"/>
@@ -52,6 +53,7 @@
               <option value="apear_offline">Desconectado</option>
             </select>
         </div>
+      </div>
         <hr/>
         <a (click)="saveSettings()" class="btn btn-primary btn-block">Guardar</a>
       </div>

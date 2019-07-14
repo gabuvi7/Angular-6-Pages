@@ -24,9 +24,9 @@
   <div class="whiteBorderGlassBox">
     <div class="homeHeadContainer">
       <div class="row">
-        <div class="col-md-auto">
+        <div class="col-md-auto" *ngIf="user">
           <div class="avatarFrameOnline">
-            <img src="assets/img/generic_avatar.png" id="homeAvatarPicture">
+            <img [src]="croppedImage || user.avatar || 'assets/img/generic_avatar.png'" id="homeAvatarPicture">
           </div>
         </div>
         <div class="col" *ngIf="user">
@@ -55,7 +55,7 @@
     <b *ngIf="friends">Amigos ({{friends.length}} / {{friends.length}}) </b>
     <div *ngFor="let user of friends | search: query; let i = index;" class="disblo marBot5 ">
           <span routerLink="/conversation/{{user.uid}}" style="text-decoration: none">
-            <img src="/assets/img/logo_live_online.png" class="icon">
+            <img [src]=" user.avatar || 'assets/img/logo_live_online.png'" class="icon">
             <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
              <small> {{user.email}}</small>
           </span>
