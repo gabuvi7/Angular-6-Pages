@@ -29,13 +29,13 @@
             <img src="assets/img/generic_avatar.png" id="homeAvatarPicture">
           </div>
         </div>
-        <div class="col">
-            <b>Gabriel</b>
+        <div class="col" *ngIf="user">
+          <input [(ngModel)]="user.nick" type="text" class="bg-transparent font-weight-bold" style="border:none" disabled/>
             <div>
-              <span>Online</span>
+              <span> {{user.status}} </span>
               <br />
-              <span>< Escribe un mensaje personal ></span> <br/>
-              <a (click)="logOut()">Logout</a>
+              <input [(ngModel)]="user.statinger" type="text" class="bg-transparent" style="border-top:none; border-right: none; border-left: none; border-radius: 5px; border-color: black " />
+              <button class="btn btn-success" style="padding: 0 0 0 0; margin-left: 5px" (click)="saveStatinger()">#</button>
             </div>
         </div>
       </div>

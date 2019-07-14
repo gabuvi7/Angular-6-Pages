@@ -4,7 +4,13 @@
         Platzinger
     </div>
     <div class="item" routerLink="/profile">
-        Profile
+        Perfil
+    </div>
+    <div *ngIf="router.url === '/home' || router.url === '/' || !router.url==='/profile'" (click)="logOut()" class="item btn btn-danger pt-1 pb-2 ml-1">
+        <a  class="text-center">Salir</a>
+    </div>
+    <div *ngIf="!router.url === '/home' || !router.url === '/' || router.url === '/profile'" (click)="logOut()" class=" float-right item btn btn-danger">
+        <a  class="text-center">Salir</a>
     </div>
     <div *ngIf="router.url === '/home' || router.url === '/'" class="item float-right">
         <span> {{ city }}, {{ state }} </span>

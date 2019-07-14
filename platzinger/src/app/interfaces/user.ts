@@ -30,4 +30,5 @@ export interface User {
     friend: boolean;
     uid: any;
     status?: string;
+    statinger?: string;
 }

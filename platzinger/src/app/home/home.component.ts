@@ -16,6 +16,8 @@ import { map } from 'rxjs/operators'
 })
 export class HomeComponent implements OnInit {
 
+  user: User;
+
   private appId: string;
   private appCode: string;
 
@@ -37,6 +39,19 @@ export class HomeComponent implements OnInit {
       this.appCode = "jFSgzGC7rrtFmDCZ1ceq4Q";
       this.weather = [];
       
+       //obtengo el id de la sesion
+      this.authenticationService.getStatus().subscribe((status) => {
+        this.userServices.getUserById(status.uid).valueChanges().subscribe( (data: User) =>{
+          this.user = data;
+          console.log("userID", this.user);
+        },
+        (error) =>{
+          console.log(error);
+        });
+      },
+      (error) =>{
+        console.log(error);
+      });
 
 
    }
@@ -51,15 +66,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  logOut(){
-    this.authenticationService.logOut().then( () => {
-      alert('Sesión cerrada con éxito.');
-      this.router.navigate(['login']);
-    }).catch( (error) => {
-      console.log(error);
-    });
-  }
-
   public getWeather(coordinates: any) {
     return this.http.jsonp("https://weather.cit.api.here.com/weather/1.0/report.json?product=forecast_7days_simple&language=spanish&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&app_id=" + this.appId + "&app_code=" + this.appCode, "jsonpCallback")
         .pipe(map(result => (<any>result).dailyForecasts.forecastLocation))
@@ -70,14 +76,12 @@ export class HomeComponent implements OnInit {
         });
   }
 
- /* public getLocation(coordinates: any){
-    return this.http.jsonp("https://weather.cit.api.here.com/weather/1.0/report.json?product=observation&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&oneobservation=true&app_id=" + this.appId + "&app_code=" + this.appCode, "jsonpCallback")
-    .pipe(map(result => (<any>result).observationtype.location))
-    .subscribe(result => {
-      this.locat = result.observation;
-      console.log(this.locat);
-    }, error => {
-      console.error(error);
+  saveStatinger(){
+    this.userServices.editUser(this.user).then( () =>{
+      alert('Statinger guardado');
+    }).catch( (error) => {
+      alert('Hubo un error');
+      console.log('Error en guardar statinger: ',error);
     });
-  }*/
+  }
 }
