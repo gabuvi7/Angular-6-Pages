@@ -26,7 +26,9 @@
       </div>
       <div class="col-md-9 container">
         <div class="bg-white border container pl-0 pr-0">
-          <textarea type="text" class="form-control containerChatUser"></textarea>
+          <textarea type="text" [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control containerChatUser">
+
+          </textarea>
           <div class="row pl-3">
             <div>
               <select id="selectEmoji">
