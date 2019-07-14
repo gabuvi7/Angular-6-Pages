@@ -28,6 +28,7 @@ import { AuthenticationGuard } from './services/authentication.guard';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { MomentPipe } from './pipes/moment.pipe';
 
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 // Declaracion de rutas
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     AngularFireDatabaseModule,
     HttpClientModule, 
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    ImageCropperModule
   ],
   declarations: [
     AppComponent,

@@ -31,4 +31,5 @@ export interface User {
     uid: any;
     status?: string;
     statinger?: string;
+    avatar?: string;
 }
