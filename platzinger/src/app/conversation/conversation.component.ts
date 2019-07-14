@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
 
+//Resolvemos la comunicacion en tiempo real.
 
 @Component({
   selector: 'app-conversation',
