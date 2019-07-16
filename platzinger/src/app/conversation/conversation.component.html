@@ -12,9 +12,12 @@
       </div>
       <hr/>
       <div class="containerChat container">
-        <textarea class="form-control containerChat ml-0" readonly>
-
-        </textarea>
+        <div class="form-control containerChat ml-0 overflow-auto">
+          <div class="messageGroup" *ngFor="let message of conversation">
+              <b>{{getUserNickById(message.sender)}}</b> dice: <br/>
+              <span>{{message.text}}</span>
+          </div>
+        </div>
       </div>
       
     </div>

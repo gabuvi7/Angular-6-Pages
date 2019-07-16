@@ -19,6 +19,7 @@ export class ConversationComponent implements OnInit {
   user: User;
   conversation_id: string;
   textMessage: string;  
+  conversation: any[];
 
   price: number = 78.2626262656654; // Creacion de variables para los pipes aplicados en el html.
   today: any = Date.now(); // para saber el dia de hoy.
@@ -43,6 +44,8 @@ export class ConversationComponent implements OnInit {
           //creo un arreglo que va a tener los id de los 2 user:
           const ids = [this.user.uid, this.friend.uid].sort(); //el sort lo ordena para que siempre se encuentre igual, y no haya problemas al ingresar a la conversacion. Dado que mi amigo puede ingresar primero o al reves, y eso modificaria el id de la conversacion.
           this.conversation_id = ids.join('|'); //el join aplicado a un arreglo de js concatena todos los elementos en un string, separandolo por un parametro que le paso 
+          this.getConversation(); //obtengo la conversacion para enviarla al textarea.
+
         }, (error) => {
           console.log("Ocurrio un error");
         });
@@ -70,6 +73,35 @@ export class ConversationComponent implements OnInit {
     this.conversationService.createConversation(message).then( () => {
       this.textMessage = '';
     });
+  }
+
+  getConversation(){
+    this.conversationService.getConversation(this.conversation_id).valueChanges().subscribe( (data) => {
+      this.conversation = data;
+      this.conversation.forEach( (message) => {
+        if(!message.seen) { //si el mensaje no fue visto 
+          message.seen = true;
+          this.conversationService.editConversation(message);
+          //ahora vamos a repro el audio: con html5:
+          const audio = new Audio ('assets/sound/new_message.m4a');
+          audio.play();
+        }
+      });
+
+      console.log(data);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }
+
+  getUserNickById(id){
+    if (id === this.friend.uid){
+      return this.friend.nick;
+    }
+    else{
+      return this.user.nick;
+    }
   }
 
 }

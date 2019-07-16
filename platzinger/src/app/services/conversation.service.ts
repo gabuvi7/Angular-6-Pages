@@ -17,4 +17,9 @@ export class ConversationService {
    getConversation(uid){
      return this.angularFireDB.list('conversations/' + uid); // Regresamos todos los mensajes de la conversacion.
    }
+
+   editConversation(conversation){
+    return this.angularFireDB.object('conversations/'+ conversation.uid + '/' + conversation.timestamp).set(conversation); // De esta forma se crean las conversaciones.
+   }
+
 }
