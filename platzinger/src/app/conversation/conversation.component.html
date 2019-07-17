@@ -1,4 +1,4 @@
-<div id="conversationContainer">
+<div id="conversationContainer" [ngClass]="{'shaker': shake}">
   <div class="row mr-0 ml-0">
     <div class="col-md-3">
       <div class="row ml-3 mt-3">
@@ -43,7 +43,7 @@
                 <option value="0"><i src="/assets/img/regular_smile.gif"></i> </option>
               </select>
             </div> 
-            <div class="pt-0">
+            <div class="pt-0" (click)="sendZumbido()">
               <a type="button" id="aZumbido" class="btn pl-0 pr-0">
                 <img id="btnZumbido" class="d-inline-block" src="/assets/img/zumbido.png">
               </a>

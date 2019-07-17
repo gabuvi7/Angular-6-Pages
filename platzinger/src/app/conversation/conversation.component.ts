@@ -21,6 +21,8 @@ export class ConversationComponent implements OnInit {
   textMessage: string;  
   conversation: any[];
 
+  shake: boolean = false; //flag booleana para utilizar con el ngClass cuando se hacen zumbidos.
+
   price: number = 78.2626262656654; // Creacion de variables para los pipes aplicados en el html.
   today: any = Date.now(); // para saber el dia de hoy.
   constructor(private activatedRoute: ActivatedRoute,
@@ -68,11 +70,34 @@ export class ConversationComponent implements OnInit {
       timestamp: Date.now(),
       text: this.textMessage,
       sender: this.user.uid,
-      receiver: this.friend.uid
+      receiver: this.friend.uid,
+      type: 'text'
     };
     this.conversationService.createConversation(message).then( () => {
       this.textMessage = '';
     });
+  }
+
+  sendZumbido(){
+    const message = {
+      uid: this.conversation_id , //el mismo id debe ser el mensaje enviado y recibido, para que no genere 2 conversaciones distintas.
+      timestamp: Date.now(),
+      text: null,
+      sender: this.user.uid,
+      receiver: this.friend.uid,
+      type: 'zumbido'
+    };
+    this.conversationService.createConversation(message).then( () => {});
+    this.doZumbido();
+  }
+
+  doZumbido(){
+    const audio = new Audio ('assets/sound/zumbido.m4a');
+    audio.play();
+    this.shake = true; // asignamos true al flag para que empiece a vibrar la pantalla.
+    window.setTimeout(() => { //lo que hace es esperar la cant de milisegundos que le paso por parametro, y poner en false el flag para que deje de vibrar.
+      this.shake = false;
+    }, 1000);
   }
 
   getConversation(){
@@ -82,9 +107,13 @@ export class ConversationComponent implements OnInit {
         if(!message.seen) { //si el mensaje no fue visto 
           message.seen = true;
           this.conversationService.editConversation(message);
-          //ahora vamos a repro el audio: con html5:
-          const audio = new Audio ('assets/sound/new_message.m4a');
-          audio.play();
+          if(message.type == 'text'){
+            //ahora vamos a repro el audio: con html5:
+            const audio = new Audio ('assets/sound/new_message.m4a');
+            audio.play();
+          }else if(message.type == 'zumbido'){
+            this.doZumbido();
+          }
         }
       });
 
