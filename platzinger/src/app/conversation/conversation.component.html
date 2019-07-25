@@ -11,11 +11,16 @@
         <span class="textNick" *ngIf="friend"> {{friend.nick | json}} </span> <span class="textStatus">(online) </span>
       </div>
       <hr/>
-      <div class="containerChat container">
-        <div class="form-control containerChat ml-0 overflow-auto">
+      <div class="containerChat container" >
+        <div class="form-control containerChat ml-0 overflow-auto" id="chatContainer">
           <div class="messageGroup" *ngFor="let message of conversation">
-              <b>{{getUserNickById(message.sender)}}</b> dice: <br/>
-              <span>{{message.text}}</span>
+              <div *ngIf="message.type == 'zumbido'">
+                <b>{{getUserNickById(message.sender)}}</b> ha enviado un zumbido <br/>
+              </div>
+              <div *ngIf="message.type == 'text'">
+                <b>{{getUserNickById(message.sender)}}</b> dice: <br/>
+                <span>{{message.text}}</span>
+              </div>
           </div>
         </div>
       </div>
