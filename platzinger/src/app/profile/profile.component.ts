@@ -16,7 +16,8 @@ export class ProfileComponent implements OnInit {
   picture: any;
   user: User; 
 
-  constructor(private userService: UserService, private authenticationService: AuthenticationService, private fbStorage: AngularFireStorage) {
+  constructor(private userService: UserService, private authenticationService: AuthenticationService, 
+    private fbStorage: AngularFireStorage) {
     //obtengo el id de la sesion
     this.authenticationService.getStatus().subscribe((status) => {
       this.userService.getUserById(status.uid).valueChanges().subscribe( (data: User) =>{

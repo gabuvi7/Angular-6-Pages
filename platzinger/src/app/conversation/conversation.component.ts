@@ -4,8 +4,12 @@ import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
 import { ConversationService } from '../services/conversation.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 //Resolvemos la comunicacion en tiempo real.
+
+declare var $: any; //para poder usar jquery.
 
 @Component({
   selector: 'app-conversation',
@@ -20,15 +24,23 @@ export class ConversationComponent implements OnInit {
   conversation_id: string;
   textMessage: string;  
   conversation: any[];
+  picture: any;
+  croppedImage: any = '';
+  imageChangedEvent: any = '';
+
 
   shake: boolean = false; //flag booleana para utilizar con el ngClass cuando se hacen zumbidos.
 
   price: number = 78.2626262656654; // Creacion de variables para los pipes aplicados en el html.
   today: any = Date.now(); // para saber el dia de hoy.
+
+
+  
   constructor(private activatedRoute: ActivatedRoute,
     /*agrego una nueva propiedad*/ private userService: UserService,
     private conversationService: ConversationService,
-    private authenticationService: AuthenticationService) { // Con el activatedRoute podemos acceder a los parametros que nos llegan. Ej. uid
+    private authenticationService: AuthenticationService,
+    private fbStorage: AngularFireStorage) { // Con el activatedRoute podemos acceder a los parametros que nos llegan. Ej. uid
     
       this.friendId = this.activatedRoute.snapshot.params['uid'];// el snapshot.params trae todos los parametros, entonces le tengo que indicar cual quiero traer, debo poner el mismo nombre que puse en el app.module.ts en la parte de conversation/:uid.
     console.log(this.friendId);
@@ -76,6 +88,47 @@ export class ConversationComponent implements OnInit {
     this.conversationService.createConversation(message).then( () => {
       this.textMessage = '';
     });
+  }
+
+  sendImage() {
+    const currentPictureId = Date.now();
+    const pictures = this.fbStorage.ref('conversation/pictures/' + this.conversation_id + '/' +
+     currentPictureId + '.jpg').putString(this.croppedImage, 'data_url');
+    pictures.then((result) => {
+      this.picture = 
+        this.fbStorage.ref('conversation/pictures/' + this.conversation_id + '/' +
+        currentPictureId + '.jpg').getDownloadURL();
+      this.picture.subscribe((p) => {
+        const message = {
+          uid: this.conversation_id,
+          timestamp: Date.now(),
+          text: p,
+          sender: this.user.uid,
+          receiver: this.friend.uid,
+          type: 'image'
+        }
+        this.conversationService.createConversation(message).then(() => { });
+        this.croppedImage = '';
+      });
+    }).catch((error) => {
+      console.log(error)
+    });
+  }
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+      this.croppedImage = event.base64;
+  }
+  imageLoaded() {
+      // show cropper
+  }
+  cropperReady() {
+      // cropper ready
+  }
+  loadImageFailed() {
+      // show message
   }
 
   sendZumbido(){
