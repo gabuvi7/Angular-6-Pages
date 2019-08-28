@@ -48,7 +48,7 @@
         <input type="text" placeholder="Buscar contacto" [(ngModel)]="query" class="form-control"/>         
       </div>
       <div class="col-md-auto">
-        <img src="/assets/img/logo_live_add.png" class="icon">
+        <img src="/assets/img/logo_live_add.png" class="icon" (click)="open(content)">
       </div>
     </div>
     <hr/>
@@ -68,6 +68,34 @@
 
 
 </div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Agregar amigo!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <b>Ingresa email de tu amigo: </b>
+        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail"
+        (keyup.enter)="sendRequest()">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="sendRequest()">Guardar</button>
+    </div>
+  </ng-template>
+  
+  <!--<button class="btn btn-lg btn-outline-primary" ">Launch demo modal</button> -->
+
+  
+  <hr>
+  
+  <pre>{{closeResult}}</pre>
+  
 
 
 

@@ -30,6 +30,9 @@ import { MomentPipe } from './pipes/moment.pipe';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
 
+//Importo Ng-Bootstrap:
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 // Declaracion de rutas
 const appRoutes: Routes = [
@@ -56,7 +59,8 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     HttpClientModule, 
     HttpClientJsonpModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgbModule
   ],
   declarations: [
     AppComponent,
