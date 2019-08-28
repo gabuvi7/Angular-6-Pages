@@ -33,6 +33,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 //Importo Ng-Bootstrap:
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+//Importo la libreria basada en bootstrap:
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { RequestComponent } from './modals/request/request.component';
+
 
 // Declaracion de rutas
 const appRoutes: Routes = [
@@ -60,7 +64,8 @@ const appRoutes: Routes = [
     HttpClientModule, 
     HttpClientJsonpModule,
     ImageCropperModule,
-    NgbModule
+    NgbModule.forRoot(),
+    BootstrapModalModule.forRoot({container: document.body}) //se hace para que puedan ser visibles en todas las pantallas.
   ],
   declarations: [
     AppComponent,
@@ -70,12 +75,14 @@ const appRoutes: Routes = [
     ProfileComponent,
     MenuComponent,
     SearchPipe,
-    MomentPipe //incluimos el pipe creado
+    MomentPipe,//incluimos el pipe creado
+    RequestComponent 
   ],
   providers: [
     { provide: FirebaseOptionsToken, useValue: environment.firebaseConfig }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RequestComponent] //para que al momento de llamarlo este disponible y bootstrap lo pueda mostrar.
 })
 export class AppModule { }
 
