@@ -32,4 +32,5 @@ export interface User {
     status?: string;
     statinger?: string;
     avatar?: string;
+    friends?: any;
 }
