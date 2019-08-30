@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, timestamp } from 'rxjs/operators';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { RequestsService } from '../services/requests.service';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,8 @@ export class HomeComponent implements OnInit {
  
   closeResult: string;
   friendEmail: string = '';
+
+  greetingRequest: string;
 
     // Inyectamos un servicio en el constructor.
     constructor(private http: HttpClient, private userServices: UserService, private authenticationService: AuthenticationService, private router: Router,
@@ -108,7 +111,8 @@ export class HomeComponent implements OnInit {
       timestamp: Date.now(),
       receiver_email: this.friendEmail,
       sender: this.user.uid,
-      status: 'pending'
+      status: 'pending',
+      greeting: this.greetingRequest
     };
     this.requestService.createRequest(request).then( () => {
       alert('Solicitud enviada');

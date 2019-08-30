@@ -74,10 +74,18 @@
       </button>
     </div>
     <div class="modal-body">
-      <div>
-        <b>Ingresa email de tu amigo: </b>
-        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail"
-        (keyup.enter)="sendRequest()">
+      <div class="row">
+        <div class="col-md-10">
+          <b>Ingresa email de tu amigo: </b>
+          <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail"
+          (keyup.enter)="sendRequest()">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+            <b>Mensaje personalizado: </b>
+          <textarea [(ngModel)] = "greetingRequest" class="form form-control"></textarea>
+        </div>
       </div>
     </div>
     <div class="modal-footer">

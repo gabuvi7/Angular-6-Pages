@@ -20,6 +20,7 @@ export class AppComponent {
   constructor(public router: Router, private authenticationService: AuthenticationService,
     private userService: UserService, private requestService: RequestsService,
     private dialogService: DialogService){
+      
     this.authenticationService.getStatus().subscribe((status) => { 
       this.userService.getUserById(status.uid).valueChanges().subscribe( (data: User) => {
         this.user = data;
