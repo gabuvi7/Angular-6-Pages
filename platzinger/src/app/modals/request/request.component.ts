@@ -18,6 +18,7 @@ export class RequestComponent extends DialogComponent<PromptModel, any> implemen
   scope: any;
   currentRequest: any;
   shouldAdd: string = 'yes';
+
   constructor(public dialogService: DialogService, private userService: UserService, 
     private requestService: RequestsService) {
     super(dialogService); //me va a transformar el componente a su forma de modal.

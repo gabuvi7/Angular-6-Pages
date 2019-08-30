@@ -9,14 +9,14 @@
           <img src="assets/img/generic_avatar.png" class="img-fluid" style="max-height: 50px" />
         </div>
         <div class="col-md">
-          <b>{{currentRequest.sender}}</b>
+          <b>{{currentRequest.sender_email}}</b>
           <small>Te ha enviado esta solicitud.</small>
         </div>
         <hr/>
       </div>
       <div class="row">
         <div class="col-md">
-          <b>{{currentRequest.sender}} dice: </b> 
+          <b>{{currentRequest.sender_email}} dice: </b> 
           <span>{{currentRequest.greeting}}</span>
         </div>
       </div>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <a (click)="accept(); close()" class="btn btn-primary">Ok</a>
+      <a (click)="accept()" class="btn btn-primary">Ok</a>
       <a (click)="close()" class="btn btn-default">Cerrar</a>
     </div>
   </div>
