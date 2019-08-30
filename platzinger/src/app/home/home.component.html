@@ -54,16 +54,8 @@
     <hr/>
     <b *ngIf="user && user.friends">Amigos ({{user.friends.length}} / {{user.friends.length}}) </b>
     <div *ngIf="user && user.friends">
-      <div *ngFor="let user of user.friends | search: query; let i = index;" class="disblo marBot5 ">
-        <div>
-          {{user}}
-        </div>
-            <!--<span routerLink="/conversation/{{user.uid}}" style="text-decoration: none">
-              <img [src]=" user.avatar || 'assets/img/logo_live_online.png'" class="icon">
-              <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
-              <small> {{user.email}}</small>
-            </span>
-          -->
+      <div class="disblo marBot5 ">
+        <app-contact class="col-md-12" *ngFor="let user of user.friends" [uid] = "user"></app-contact>
       </div>
     </div>
   </div>

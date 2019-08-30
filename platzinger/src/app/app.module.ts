@@ -36,6 +36,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 //Importo la libreria basada en bootstrap:
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { RequestComponent } from './modals/request/request.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 // Declaracion de rutas
@@ -76,7 +77,7 @@ const appRoutes: Routes = [
     MenuComponent,
     SearchPipe,
     MomentPipe,//incluimos el pipe creado
-    RequestComponent 
+    RequestComponent, ContactComponent 
   ],
   providers: [
     { provide: FirebaseOptionsToken, useValue: environment.firebaseConfig }
