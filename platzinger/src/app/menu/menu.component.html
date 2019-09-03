@@ -12,7 +12,7 @@
     <div *ngIf="!router.url === '/home' || !router.url === '/' || router.url === '/profile'" (click)="logOut()" class=" float-right item btn btn-danger">
         <a  class="text-center">Salir</a>
     </div>
-    <div *ngIf="router.url === '/home' || router.url === '/'" class="item float-right">
+    <div *ngIf="router.url === '/home' || router.url === '/'" id="idCity" class="item float-right">
         <span> {{ city }}, {{ state }} </span>
     </div>
     

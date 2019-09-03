@@ -1,0 +1,139 @@
+<div id="homeContainer">
+    <div class="container-fluid float-right" style="max-width: 150px; max-height: 130px; overflow: hidden; padding: 0px 0px 0px 0px ; margin: 0;">
+      <div *ngIf="weather.length == 0" class="row">
+        <div class="col-12">
+            <p>Searching...</p>
+        </div>
+      </div>
+      <div class="row" *ngIf="weather.length > 0">
+        <div class="col" *ngFor="let forecast of weather">
+            <div class="row">
+              <div class="col">
+                  <img class="img-fluid" [src]="forecast.iconLink" />
+              </div>
+              <div class="col">
+                  <p>{{ forecast.highTemperature }}C°</p>
+              </div>
+              <div class="col">
+                  <p>{{ forecast.utcTime | moment}}</p>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  <div class="whiteBorderGlassBox">
+    <div class="homeHeadContainer">
+      <div class="row">
+        <div class="col-md-auto" *ngIf="user">
+          <div class="avatarFrameOnline">
+            <img [src]="croppedImage || user.avatar || './assets/img/generic_avatar.png'" id="homeAvatarPicture">
+          </div>
+        </div>
+        <div class="col" *ngIf="user">
+          <input [(ngModel)]="user.nick" type="text" class="bg-transparent font-weight-bold" style="border:none" disabled/>
+            <div>
+              <span> {{user.status}} </span>
+              <br />
+              <input [(ngModel)]="user.statinger" type="text" class="bg-transparent" style="border-top:none; border-right: none; border-left: none; border-radius: 5px; border-color: black " />
+              <button class="btn btn-success" style="padding: 0 0 0 0; margin-left: 5px" (click)="saveStatinger()">#</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="whiteContainerPadded marTop15">
+    <div class="row">
+      <div class="col">
+        <input type="text" placeholder="Buscar contacto" [(ngModel)]="query" class="form-control"/>         
+      </div>
+      <div class="col-md-auto">
+        <img src="./assets/img/logo_live_add.png" class="icon" (click)="open(content)">
+      </div>
+    </div>
+    <hr/>
+    <b *ngIf="user && user.friends">Amigos ({{user.friends.length}} / {{user.friends.length}}) </b>
+    <div *ngIf="user && user.friends">
+      <div class="disblo marBot5 ">
+        <app-contact class="col-md-12" *ngFor="let user of user.friends" [uid] = "user"></app-contact>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Agregar amigo!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-10">
+          <b>Ingresa email de tu amigo: </b>
+          <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail"
+          (keyup.enter)="sendRequest()">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+            <b>Mensaje personalizado: </b>
+          <textarea [(ngModel)] = "greetingRequest" class="form form-control"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="sendRequest()">Guardar</button>
+    </div>
+  </ng-template>
+  
+  <!--<button class="btn btn-lg btn-outline-primary" ">Launch demo modal</button> -->
+
+  
+  <hr>
+  
+
+
+
+<!--  Lo de abajo es de las primeras clases. -->
+
+<!-- Para mostrar el array voy a utilizar a NgFor. Es una directiva estructural y comienza con un *.
+   Se pueden declarar variables dentro de un NgFor -->
+
+  <!-- Para que funcione el ngIf, necesitamos un ng-container (usarlo en minuscula, es keysensitive), su funcion es no existir a vista del usuario.
+     Ayuda a tener 2 elementos dif y poder aplicar el ngFor y el ngIf. -->
+ <!-- 
+<input type="text" placeholder="Buscar contacto" [(ngModel)]="query" /> <!-- lo que hace el ng model es tomar una variable que nosotros le especifiquemos, por ej
+Query, y verificar si esa variable cambia. Si lo hace, lo cambia en el ts o en el html. 
+En principio va a dar error porque no encuentra el modulo ngModdel. hay que importarlo en app.module.ts
+El modulo que permite importarlo se llama FormsModule
+     <br/><br/>
+
+  Introduccion a la navegacion con parametros. Cambio los parrafos por la et a y agrego un div, donde este ultimo va 
+  a contener el ngIf y la etiqueta a va a contener el routerLink a conversation. Para enviar un parametro
+en el routerLink le enviaremos el /conversation/{{user.uid}}. Pero asi solo no funciona, asi que vamos a
+app.Module.ts y agregamos en conversation una barra y el nombre del parametro
+
+<b>Amigos</b>
+  <ng-container *ngFor="let user of friends | search: query; let i = index;">
+    <div> <!-- *ngIf="user.friend" > Quito el ngIf para que me muestre todos los contactos.
+      <a routerLink="/conversation/{{user.uid}}" style="text-decoration: none">  recorre el arreglo de friend. Con la variable i, tomo el indice y lo muestro por cada usuario 
+        {{i}}. {{user.nick}} - {{user.email}}  Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.
+      </a>
+    </div>
+  </ng-container>
+<!-- Quito el NO AGREGADOS, porque voy a implementar la barra de busqueda con pipes.-->
+ <!-- <b>No agregados</b>
+  <ng-container *ngFor="let user of friends; let i = index;">
+    <div>
+      <a *ngIf="!user.friend" > recorre el arreglo de friend y muestro los que no son amigos. Con la variable i, tomo el indice y lo muestro por cada usuario 
+      <!--  {{i}}. {{user.nick}} - {{user.email}}  <span style="color: red; font-size: xx-large;  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">.</span> <!-- Realizo una interpolacion de string usando doble llave y adentro llamo a la variable que yo quiera mostrar.-->
+      <!--</a>
+    </div>
+  </ng-container> -->

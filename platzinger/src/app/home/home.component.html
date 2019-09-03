@@ -1,4 +1,4 @@
-<div id="homeContainer">
+<div id="homeContainer" style="background-image: url(./assets/img/msnbg.jpg)">
     <div class="container-fluid float-right" style="max-width: 150px; max-height: 130px; overflow: hidden; padding: 0px 0px 0px 0px ; margin: 0;">
       <div *ngIf="weather.length == 0" class="row">
         <div class="col-12">
@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-md-auto" *ngIf="user">
           <div class="avatarFrameOnline">
-            <img [src]="croppedImage || user.avatar || 'assets/img/generic_avatar.png'" id="homeAvatarPicture">
+            <img [src]="croppedImage || user.avatar || './assets/img/generic_avatar.png'" id="homeAvatarPicture" style="border-radius: 10px;">
           </div>
         </div>
         <div class="col" *ngIf="user">
@@ -48,7 +48,7 @@
         <input type="text" placeholder="Buscar contacto" [(ngModel)]="query" class="form-control"/>         
       </div>
       <div class="col-md-auto">
-        <img src="/assets/img/logo_live_add.png" class="icon" (click)="open(content)">
+        <img src="./assets/img/logo_live_add.png" class="icon" (click)="open(content)">
       </div>
     </div>
     <hr/>
@@ -97,8 +97,6 @@
 
   
   <hr>
-  
-  <pre>{{closeResult}}</pre>
   
 
 

@@ -2,7 +2,7 @@
   <div class="row mr-0 ml-0">
     <div class="col-md-3">
       <div class="row ml-3 mt-3" *ngIf="user">
-        <img [src]="user.avatar || '/assets/img/logo_live_online.png'" class="img-fluid avatarFrameOnlineConver">
+        <img [src]="friend.avatar || '/assets/img/logo_live_online.png'" class="img-fluid avatarFrameOnlineConver">
       </div>     
     </div>
 
@@ -14,16 +14,22 @@
       <div class="containerChat container" >
         <div class="form-control containerChat ml-0 overflow-auto" id="chatContainer">
           <div class="messageGroup" *ngFor="let message of conversation">
-              <div *ngIf="message.type == 'zumbido'">
-                <b>{{getUserNickById(message.sender)}}</b> ha enviado un zumbido <br/>
+              <div class="row ml-0 mw-100 mb-2" *ngIf="message.type == 'zumbido'">
+                <div class="container-fluid d-flex justify-content-center">
+                  <b>{{getUserNickById(message.sender)}}</b> ha enviado un zumbido <br/>
+                </div>
               </div>
-              <div *ngIf="message.type == 'text'">
-                <b>{{getUserNickById(message.sender)}}</b> dice: <br/>
-                <span>{{message.text}}</span>
+              <div class="row ml-0 mw-100 mb-2" *ngIf="message.type == 'text' && user">
+                <div class="container-fluid d-flex justify-content-start">
+                  <b>{{getUserNickById(message.sender)}}</b> dice: <br/>
+                  <span>{{message.text}}</span>
+                </div>
               </div>
-              <div *ngIf="message.type == 'image'">
-                <b>{{getUserNickById(message.sender)}}</b> dice: <br/>
-                <img src="{{message.text}}" />   
+              <div class="row ml-0 mw-100 mb-2" *ngIf="message.type == 'image'">
+                <div class="container-fluid d-flex justify-content-start">
+                  <b>{{getUserNickById(message.sender)}}</b> dice: <br/>
+                  <img src="{{message.text}}" />   
+                </div>
               </div>
           </div>
         </div>
@@ -44,24 +50,24 @@
           <div class="row pl-3">
             <div>
               <select id="selectEmoji">
-                <option value="0"><i src="/assets/img/regular_smile.gif"></i> </option>
+                <option value="0"><i src="./assets/img/regular_smile.gif"></i> </option>
               </select>
             </div>
             <div>
               <select id="selectEmoji">
-                <option value="0"><i src="/assets/img/regular_smile.gif"></i> </option>
+                <option value="0"><i src="./assets/img/regular_smile.gif"></i> </option>
               </select>
             </div> 
             <div class="pt-0" (click)="sendZumbido()">
               <a type="button" id="aZumbido" class="btn pl-0 pr-0">
-                <img id="btnZumbido" class="d-inline-block" src="/assets/img/zumbido.png">
+                <img id="btnZumbido" class="d-inline-block" src="./assets/img/zumbido.png">
               </a>
             </div>
             <label>
                <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
                   Enviar foto
-                  <img class="img-fluid" id="btnZumbido" src="/assets/img/icons/camera.gif">
+                  <img class="img-fluid" id="btnZumbido" src="./assets/img/icons/camera.gif">
               </button>
             </label>
           </div>
@@ -84,7 +90,7 @@
         <div class="modal-body">
             <label class="customFileUploadChat">
                 <input type="file" (change)="fileChangeEvent($event)">
-                <img class="img-fluid" id="btnZumbido" src="/assets/img/icons/camera.gif">
+                <img class="img-fluid" id="btnZumbido" src="./assets/img/icons/camera.gif">
                 Seleccionar imágen
             </label>
             <image-cropper

@@ -1,0 +1,49 @@
+Creando un CRUD implementando un API REST HTTP (con diversos backends)
+
+Las apps que construimos en Ionic, son meramente de frontend, esto quiere decir, que los archivos de la aplicación en sí, sólo son ejecutados en el browser cliente.
+Dado esto, nuestras apps deben usar ciertos mecanismos para conectarse con el backend, como comunicación a través de sockets puros o llamados HTTP.
+Nuestra app se comunica con Firebase usando la librería AngularFire, la cual establece comunicación con nuestra base de datos usando sockets, sin embargo, fácilmente puedes reemplazar esta librería (y firebase) por cualquier backend que exponga un API que el app pueda consumir.
+
+Por ejemplo, puedes usar un backend de PHP, usando Laravel. Puedes usar este repositorio para montar tu propio servidor de Laravel: https://github.com/EduardoIbarra/laravelcrud (debes de hacer configuraciones de base de datos e instalación de dependencias usando composer, puedes encontrar cómo crear este backend y como ejecutarlo aquí: https://www.youtube.com/watch?v=2RNZ1TcK_kI&list=PLYPjmy5IVxT_EXZQK-Getu3xKAJ4bPOa6
+
+Las funciones de un CRUD son las siguientes:
+
+Create, usando un verbo HTTP llamado POST
+Read, usando un verbo HTTP llamado GET
+Update, usando un verbo HTTP llamado PUT
+Delete, usando un verbo HTTP llamado DELETE
+Te recomiendo crear un nuevo app de Ionic para consumir este CRUD de Laravel. Además, agregar un servicio como los que creamos para acceder a los datos de Firebase y de esta manera acceder al CRUD.
+
+Para lograr acceder a métodos HTTP, necesitamos el Módulo de HttpClient de Angular. Lo que hay que hacer para tenerlo disponible en nuestra app es dirigirnos a nuestro app.module.ts, y en la sección de imports, colocar: HttpClientModule.
+
+Luego, en el servicio que agregaste para el acceso al CRUD, en su constructor, agregar una propiedad del tipo HttpClient, de esta manera: private httpClient: HttpClient.
+
+Aquí te muestro los métodos de acceso para este CRUD en particular:
+
+ get() {
+    return this.httpClient.get(this.API_ENDPOINT + '/movies');
+  }
+
+  save(movie: Movie) {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.post(this.API_ENDPOINT + '/movies', movie, {headers: headers});
+  }
+
+  put(movie) {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.put(this.API_ENDPOINT + '/movies/' + movie.id, movie, {headers: headers});
+  }
+
+  delete(id) {
+    return this.httpClient.delete(this.API_ENDPOINT + '/movies/' + id);
+  }
+Y a partir de este punto, lo demás es casi exactamente igual que acceder a método de Firebase, simplemente, inyectas el servicio en tu Page o Componente y llamas a sus métodos, los cuáles regresan Observables a los que puedes suscribirte (.subscribe())
+
+Si deseas el resultado final de este crud para Angular, puedes obtenerlo aquí: https://github.com/EduardoIbarra/angularcrud/tree/2_RoutingInterfaces
+
+CRUD con Django
+Para hacer el CRUD con Django, realmente el cambio es poco, puedes tomar el CRUD de Django que cree desde este repositorio de Github: https://github.com/EduardoIbarra/djangocrud
+
+Este CRUD se desarrolló basándome en esta guía y adaptando el código al mismo caso del CRUD de Laravel: https://codeburst.io/create-a-django-api-in-under-20-minutes-2a082a60f6f3
+
+Aquí está una versión del CRUD de Angular adaptado a nuestro nuevo CRUD de Django: https://github.com/EduardoIbarra/angularcrud/tree/django, si te ocurre algún error relacionado con Access-Control-Allow-Origin, checa este url: https://gist.github.com/miraculixx/6536381

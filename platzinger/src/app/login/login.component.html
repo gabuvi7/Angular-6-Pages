@@ -17,11 +17,11 @@
         <p *ngIf="operation == 'login'">No tienes cuenta? Haz click en <a class="text-danger" (click)="operation= 'register'">Registrarse</a>.</p>
         <div class="borderedContainer">
           <input [(ngModel)]="email" class="form-control marBot15" type="email" placeholder="Ingrese el email"/>
-          <input [(ngModel)]="password" class="form-control marBot15" type="password" placeholder="Ingrese la contraseña"/>
+          <input [(ngModel)]="password" (keyup.enter)="login()" class="form-control marBot15" type="password" placeholder="Ingrese la contraseña"/>
           <input [(ngModel)]="nick" *ngIf="operation == 'register'" class="form-control marBot15" type="text" placeholder="Ingrese nick"/>
         </div>
         <div class="center marTop15 marBot15">
-          <a (click)="login()" *ngIf="operation == 'login'" class="btn btn-primary-login">Iniciar Sesión</a>
+          <a (click)="login()" *ngIf="operation == 'login'" class="btn btn-primary-login" style="color: white">Iniciar Sesión</a>
           <a (click)="register()" *ngIf="operation == 'register'" class="btn btn-primary">Registrarme</a>
         </div>
       </div>
