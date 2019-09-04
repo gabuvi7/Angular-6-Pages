@@ -1,6 +1,12 @@
 # Platzinger
 
-Se trata de una aplicación web al estilo de messenger. Se pueden registrar usuarios, loguearse y agregar amigos y así poder chatear.  
+It's a single web page, it's similar to messenger.
+You can registry, add avatars, profile photo.
+Once you add friends, you can chat with them.
+
+This is the link to the page: https://platzinger-324fc.firebaseapp.com/
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
