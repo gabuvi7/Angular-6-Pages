@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 // Importamos la interfaz User
 import { User } from '../interfaces/user';
 import { AngularFireDatabase } from '@angular/fire/database';
+//import { userInfo } from 'os';
 // nos traemos info de home.components.ts
 
 @Injectable({
@@ -30,6 +31,12 @@ export class UserService {
     return this.angularFireDataBase.object('/users/' + user.uid).set(user); //Al id le insertamos el user completo.
   }
 
+  setAvatar(avatar, uid){
+    return this.angularFireDataBase.object('/users/' + uid + '/avatar/').set(avatar);
+  }
   
-  
+  addFriend(userId, friendId){
+    this.angularFireDataBase.object('users/' + userId + '/friends/' + friendId).set(friendId);
+    return this.angularFireDataBase.object('users/' + friendId + '/friends/' + userId).set(userId);
+  }
 }

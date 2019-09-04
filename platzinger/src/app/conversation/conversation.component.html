@@ -1,8 +1,8 @@
-<div id="conversationContainer">
+<div id="conversationContainer" [ngClass]="{'shaker': shake}">
   <div class="row mr-0 ml-0">
     <div class="col-md-3">
-      <div class="row ml-3 mt-3">
-        <img src="/assets/img/logo_live_online.png" class="img-fluid avatarFrameOnlineConver">
+      <div class="row ml-3 mt-3" *ngIf="user">
+        <img [src]="friend.avatar || '/assets/img/logo_live_online.png'" class="img-fluid avatarFrameOnlineConver">
       </div>     
     </div>
 
@@ -11,42 +11,64 @@
         <span class="textNick" *ngIf="friend"> {{friend.nick | json}} </span> <span class="textStatus">(online) </span>
       </div>
       <hr/>
-      <div class="containerChat container">
-        <textarea class="form-control containerChat ml-0" readonly>
-
-        </textarea>
+      <div class="containerChat container" >
+        <div class="form-control containerChat ml-0 overflow-auto" id="chatContainer">
+          <div class="messageGroup" *ngFor="let message of conversation">
+              <div class="row ml-0 mw-100 mb-2" *ngIf="message.type == 'zumbido'">
+                <div class="container-fluid d-flex justify-content-center">
+                  <b>{{getUserNickById(message.sender)}}</b> ha enviado un zumbido <br/>
+                </div>
+              </div>
+              <div class="row ml-0 mw-100 mb-2" *ngIf="message.type == 'text' && user">
+                <div class="container-fluid d-flex justify-content-start">
+                  <b>{{getUserNickById(message.sender)}}</b> dice: <br/>
+                  <span>{{message.text}}</span>
+                </div>
+              </div>
+              <div class="row ml-0 mw-100 mb-2" *ngIf="message.type == 'image'">
+                <div class="container-fluid d-flex justify-content-start">
+                  <b>{{getUserNickById(message.sender)}}</b> dice: <br/>
+                  <img src="{{message.text}}" />   
+                </div>
+              </div>
+          </div>
+        </div>
       </div>
       
     </div>
     <div class="row container-fluid">
       <div class="col-md-3">
-          <div class="row ml-3 mt-3">
-            <img src="/assets/img/logo_live_online.png" class="img-fluid avatarFrameOnlineConver">
+          <div class="row ml-3 mt-3" *ngIf="user">
+              <img [src]="user.avatar || '/assets/img/logo_live_online.png'" class="img-fluid avatarFrameOnlineConver">
           </div>
       </div>
       <div class="col-md-9 container">
         <div class="bg-white border container pl-0 pr-0">
-          <textarea type="text" class="form-control containerChatUser"></textarea>
+          <textarea type="text" [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control containerChatUser">
+
+          </textarea>
           <div class="row pl-3">
             <div>
               <select id="selectEmoji">
-                <option value="0"><i src="/assets/img/regular_smile.gif"></i> </option>
+                <option value="0"><i src="./assets/img/regular_smile.gif"></i> </option>
               </select>
             </div>
             <div>
               <select id="selectEmoji">
-                <option value="0"><i src="/assets/img/regular_smile.gif"></i> </option>
+                <option value="0"><i src="./assets/img/regular_smile.gif"></i> </option>
               </select>
             </div> 
-            <div class="pt-0">
+            <div class="pt-0" (click)="sendZumbido()">
               <a type="button" id="aZumbido" class="btn pl-0 pr-0">
-                <img id="btnZumbido" class="d-inline-block" src="/assets/img/zumbido.png">
+                <img id="btnZumbido" class="d-inline-block" src="./assets/img/zumbido.png">
               </a>
             </div>
-            <label class="customFileUploadChat">
-              <input type="file">
-              <img class="img-fluid" id="btnZumbido" src="/assets/img/icons/camera.gif">
-              Seleccionar imágen
+            <label>
+               <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                  Enviar foto
+                  <img class="img-fluid" id="btnZumbido" src="./assets/img/icons/camera.gif">
+              </button>
             </label>
           </div>
         </div>
@@ -54,9 +76,44 @@
     </div>
   </div>
 </div>
-
-
-
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <label class="customFileUploadChat">
+                <input type="file" (change)="fileChangeEvent($event)">
+                <img class="img-fluid" id="btnZumbido" src="./assets/img/icons/camera.gif">
+                Seleccionar imágen
+            </label>
+            <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1 / 1"
+                [resizeToWidth]="128"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()">
+            </image-cropper>
+            <img [src]="croppedImage" />  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <a (click)="sendImage();" data-dissmiss="modal" class="btn btn-primary">Save changes</a>
+        </div>
+      </div>
+    </div> 
+  </div>
+    
 <!-- Explicacion de pipes, primeras clases.
 
   <p>

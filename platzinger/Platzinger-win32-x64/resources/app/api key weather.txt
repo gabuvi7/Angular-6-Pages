@@ -1,0 +1,20 @@
+/*
+No lo uso.
+https://home.openweathermap.org/api_keys
+
+a25b1842fadabbfcd804aadc3e545e0a
+
+
+
+    this.appId = "a25b1842fadabbfcd804aadc3e545e0a";
+    this.apiEndPoint = "https://api.openweathermap.org/data/2.5/";
+    
+*/
+
+
+https://developer.here.com/projects/PROD-c70bb6d5-1755-4407-bcb4-af1fdc81dd40
+
+APP ID
+AOcsvkLW66Gn0JdMaEIm
+APP CODE
+jFSgzGC7rrtFmDCZ1ceq4Q

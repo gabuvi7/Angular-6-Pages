@@ -1,0 +1,23 @@
+<!-- <a href="/home">Home</a> |
+<a href="/profile">Profile</a> |
+<a href="/login">Login</a> |
+<a href="/conversation">Conversation</a> | -->
+
+<!-- No voy a usar href porque no cumple la caracteristica de single page aplication de Angular, dado que 
+recarga los recursos cada vez que doy un click en un link. Para eso utilizo routerlink-->
+<!-- Envio el menu al componente menu.
+
+<a routerLink="/home">Home</a> |
+<a routerLink="/profile">Profile</a> |
+<a routerLink="/login">Login</a> |
+<a routerLink="/conversation">Conversation</a> |
+-->
+
+<!-- Para que el menu aparezca utilizamos el selector app-menu creado en el componente-->
+
+<app-menu *ngIf="router.url != '/login'"></app-menu>
+<div [ngClass]="{'grlContent': router.url != '/login'}">
+  <router-outlet>
+    <!-- Aca va a agregar los elementos que pusimos en el router-->
+  </router-outlet> 
+</div>

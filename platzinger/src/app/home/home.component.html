@@ -1,4 +1,4 @@
-<div id="homeContainer">
+<div id="homeContainer" style="background-image: url(./assets/img/msnbg.jpg)">
     <div class="container-fluid float-right" style="max-width: 150px; max-height: 130px; overflow: hidden; padding: 0px 0px 0px 0px ; margin: 0;">
       <div *ngIf="weather.length == 0" class="row">
         <div class="col-12">
@@ -24,18 +24,18 @@
   <div class="whiteBorderGlassBox">
     <div class="homeHeadContainer">
       <div class="row">
-        <div class="col-md-auto">
+        <div class="col-md-auto" *ngIf="user">
           <div class="avatarFrameOnline">
-            <img src="assets/img/generic_avatar.png" id="homeAvatarPicture">
+            <img [src]="croppedImage || user.avatar || './assets/img/generic_avatar.png'" id="homeAvatarPicture" style="border-radius: 10px;">
           </div>
         </div>
-        <div class="col">
-            <b>Gabriel</b>
+        <div class="col" *ngIf="user">
+          <input [(ngModel)]="user.nick" type="text" class="bg-transparent font-weight-bold" style="border:none" disabled/>
             <div>
-              <span>Online</span>
+              <span> {{user.status}} </span>
               <br />
-              <span>< Escribe un mensaje personal ></span> <br/>
-              <a (click)="logOut()">Logout</a>
+              <input [(ngModel)]="user.statinger" type="text" class="bg-transparent" style="border-top:none; border-right: none; border-left: none; border-radius: 5px; border-color: black " />
+              <button class="btn btn-success" style="padding: 0 0 0 0; margin-left: 5px" (click)="saveStatinger()">#</button>
             </div>
         </div>
       </div>
@@ -48,26 +48,56 @@
         <input type="text" placeholder="Buscar contacto" [(ngModel)]="query" class="form-control"/>         
       </div>
       <div class="col-md-auto">
-        <img src="/assets/img/logo_live_add.png" class="icon">
+        <img src="./assets/img/logo_live_add.png" class="icon" (click)="open(content)">
       </div>
     </div>
     <hr/>
-    <b *ngIf="friends">Amigos ({{friends.length}} / {{friends.length}}) </b>
-    <div *ngFor="let user of friends | search: query; let i = index;" class="disblo marBot5 ">
-          <span routerLink="/conversation/{{user.uid}}" style="text-decoration: none">
-            <img src="/assets/img/logo_live_online.png" class="icon">
-            <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
-             <small> {{user.email}}</small>
-          </span>
-        
+    <b *ngIf="user && user.friends">Amigos ({{user.friends.length}} / {{user.friends.length}}) </b>
+    <div *ngIf="user && user.friends">
+      <div class="disblo marBot5 ">
+        <app-contact class="col-md-12" *ngFor="let user of user.friends" [uid] = "user"></app-contact>
+      </div>
     </div>
-
   </div>
 
 
 
 
 </div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Agregar amigo!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-10">
+          <b>Ingresa email de tu amigo: </b>
+          <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail"
+          (keyup.enter)="sendRequest()">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+            <b>Mensaje personalizado: </b>
+          <textarea [(ngModel)] = "greetingRequest" class="form form-control"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="sendRequest()">Guardar</button>
+    </div>
+  </ng-template>
+  
+  <!--<button class="btn btn-lg btn-outline-primary" ">Launch demo modal</button> -->
+
+  
+  <hr>
+  
 
 
 
