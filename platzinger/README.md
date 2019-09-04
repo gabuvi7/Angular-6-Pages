@@ -1,6 +1,6 @@
 # Platzinger
 
-It's a single web page, it's similar to messenger.
+It's a single web application, it's similar to messenger.
 You can registry, add avatars, profile photo.
 Once you add friends, you can chat with them.
 
